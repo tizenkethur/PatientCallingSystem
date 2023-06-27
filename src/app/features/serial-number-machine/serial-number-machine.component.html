@@ -1,0 +1,53 @@
+<div id="content">
+  <div id="taj">
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline" color="warn">
+        <input
+          matInput
+          type="text"
+          placeholder="TAJ number"
+          formControlName="tajNumber"
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          tajNumber?.hasError('minlength') || tajNumber?.hasError('maxlength')
+        "
+        >A TAJ szám 9 számjegyből kell álljon.</mat-error
+      >
+
+      <mat-error *ngIf="tajNumber?.hasError('pattern')"
+        >Kérem, csak számokat adjon meg!</mat-error
+      >
+      <mat-error
+        *ngIf="
+          tajNumber?.value.length === 9 &&
+          !tajNumber?.hasError('pattern') &&
+          tajNumber?.hasError('isCdvInvalid')
+        "
+        >A megadott TAJ szám nem érvényes.</mat-error
+      >
+    </form>
+  </div>
+  <div id="list">
+    <!-- TODO: making buttons disabled if taj is not valid -->
+    <button
+      mat-raised-button
+      color="warn"
+      *ngFor="let vizsgalat of vizsgalatok"
+    >
+      {{ vizsgalat.megnevezes }}
+    </button>
+  </div>
+
+  <div id="card-holder">
+    <mat-card>
+      <p>Az Ön szorszáma:</p>
+      <p id="number">Sorszám</p>
+      <p>Vizsgálatkód</p>
+      <p *ngIf="tajNumber">{{ tajNumber.value }}</p>
+      <p>Érkezési ideje:</p>
+      <p>Várakozók száma:</p>
+    </mat-card>
+  </div>
+</div>
