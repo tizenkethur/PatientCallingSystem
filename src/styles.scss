@@ -12,7 +12,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontend-primary: mat.define-palette(mat.$brown-palette);
+$frontend-primary: mat.define-palette(mat.$cyan-palette);
 $frontend-accent: mat.define-palette(mat.$deep-orange-palette);
 
 // The warn palette is optional (defaults to red).
@@ -47,4 +47,23 @@ body {
 html,
 body {
   height: 100%;
+  background-color: rgba(245, 245, 245, 0.3);
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  button {
+    width: 260px;
+    height: 50px;
+  }
+
+  h1,
+  h3 {
+    color: rgb(119, 115, 115);
+    font-weight: bold;
+  }
 }
