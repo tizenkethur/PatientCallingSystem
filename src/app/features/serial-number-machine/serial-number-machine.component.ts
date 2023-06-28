@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { SerialNumberMachineService } from 'src/app/core/services/serial-number-machine.service';
 import { ExaminationListViewModel } from 'src/app/shared/models/ExaminationListViewModel';
+import { SerialNumberViewModel } from 'src/app/shared/models/SerialNumberViewModel';
 import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
 
 @Component({
@@ -53,9 +54,16 @@ export class SerialNumberMachineComponent implements OnInit {
     ],
   };
 
-  erkezesIdeje: string = new Date().toLocaleString();
+  serialNumberData: SerialNumberViewModel = {
+    sorszam: 106,
+    vizsgalatKod: 'V02',
+    taj: '',
+    erkezesIdeje: '2023-06-28T21:23:34.055895242',
+    varakozok: 2,
+  };
 
   constructor(private serialNumberMachineService: SerialNumberMachineService) {}
+
   ngOnInit() {
     this.serialNumberMachineService
       .getExaminationList()
@@ -64,5 +72,13 @@ export class SerialNumberMachineComponent implements OnInit {
 
   get tajNumber(): AbstractControl | null {
     return this.form.get('tajNumber');
+  }
+
+  chooseExamination(vizsgalatKod: string, taj: string) {
+    this.serialNumberMachineService
+      .chooseExamination(vizsgalatKod, taj)
+      .subscribe(
+        (serialNumberData) => (this.serialNumberData = serialNumberData)
+      );
   }
 }

@@ -35,6 +35,7 @@
       mat-raised-button
       color="warn"
       *ngFor="let examination of examinationList.examinations"
+      (click)="chooseExamination(examination.kod, tajNumber.value)"
     >
       {{ examination.megnevezes }}
     </button>
@@ -42,12 +43,17 @@
 
   <div id="card-holder">
     <mat-card>
-      <h3>Az Ön sorszáma:</h3>
-      <h1 id="number">Sorszám</h1>
-      <h3>Vizsgálatkód:</h3>
-      <h3 *ngIf="tajNumber">{{ tajNumber.value }}</h3>
-      <h3>{{ erkezesIdeje }}</h3>
-      <h3>Várakozók száma:</h3>
+      <div *ngIf="serialNumberData">
+        <h3>Az Ön sorszáma:</h3>
+        <h1 id="number">{{ serialNumberData.sorszam }}</h1>
+        <h3>Vizsgálatkód: {{ serialNumberData.vizsgalatKod }}</h3>
+        <h3 *ngIf="tajNumber">{{ serialNumberData.taj }}</h3>
+        <!--TODO: set date to hungarian format  -->
+        <h3>
+          {{ serialNumberData.erkezesIdeje | date : "medium" }}
+        </h3>
+        <h3>Várakozók száma: {{ serialNumberData.varakozok }}</h3>
+      </div>
     </mat-card>
   </div>
 </div>
