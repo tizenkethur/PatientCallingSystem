@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { SerialNumberMachineService } from 'src/app/core/services/serial-number-machine.service';
+import { ExaminationListViewModel } from 'src/app/shared/models/ExaminationListViewModel';
 import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
 
 @Component({
@@ -12,7 +14,7 @@ import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
   templateUrl: './serial-number-machine.component.html',
   styleUrls: ['./serial-number-machine.component.scss'],
 })
-export class SerialNumberMachineComponent {
+export class SerialNumberMachineComponent implements OnInit {
   form = new FormGroup({
     tajNumber: new FormControl('', [
       Validators.minLength(9),
@@ -22,17 +24,16 @@ export class SerialNumberMachineComponent {
     ]),
   });
 
-  // TODO: make a model for the examination object
-  // TODO: http get request to the backend for getting the fields
-  vizsgalatok = [
-    { megnevezes: 'Általános vizsgálat' },
-    { megnevezes: 'Vérnyomás mérés' },
-    { megnevezes: 'Vérvétel' },
-  
-  ];
+  examinationList: ExaminationListViewModel;
+
+  constructor(private serialNumberMachineService: SerialNumberMachineService) {}
+  ngOnInit() {
+    this.serialNumberMachineService
+      .getExaminationList()
+      .subscribe((examinationList) => console.log(examinationList));
+  }
 
   get tajNumber(): AbstractControl | null {
-    console.log(this.form.get('tajNumber'));
     return this.form.get('tajNumber');
   }
 }
