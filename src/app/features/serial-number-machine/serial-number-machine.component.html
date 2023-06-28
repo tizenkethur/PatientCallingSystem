@@ -31,8 +31,12 @@
   </div>
   <div id="list">
     <!-- TODO: making buttons disabled if taj is not valid -->
-    <button mat-raised-button color="warn">
-      <!-- {{ vizsgalat.megnevezes }} -->
+    <button
+      mat-raised-button
+      color="warn"
+      *ngFor="let examination of examinationList.examinations"
+    >
+      {{ examination.megnevezes }}
     </button>
   </div>
 
@@ -42,7 +46,7 @@
       <h1 id="number">Sorszám</h1>
       <h3>Vizsgálatkód:</h3>
       <h3 *ngIf="tajNumber">{{ tajNumber.value }}</h3>
-      <h3>Érkezési ideje:</h3>
+      <h3>{{ erkezesIdeje }}</h3>
       <h3>Várakozók száma:</h3>
     </mat-card>
   </div>

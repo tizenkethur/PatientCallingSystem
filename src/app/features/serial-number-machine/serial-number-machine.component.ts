@@ -24,7 +24,36 @@ export class SerialNumberMachineComponent implements OnInit {
     ]),
   });
 
-  examinationList: ExaminationListViewModel;
+  examinationList: ExaminationListViewModel = {
+    examinations: [
+      {
+        kod: 'V00',
+        megnevezes: 'Általános vizsgálat',
+      },
+      {
+        kod: 'V01',
+        megnevezes: 'Vérnyomás mérés',
+      },
+      {
+        kod: 'V02',
+        megnevezes: 'Vérvétel',
+      },
+      {
+        kod: 'V03',
+        megnevezes: 'Háziorvosi vizsgálat',
+      },
+      {
+        kod: 'V04',
+        megnevezes: 'Üzemorvosi vizsgálat',
+      },
+      {
+        kod: 'V05',
+        megnevezes: 'Bőrgyógyászat',
+      },
+    ],
+  };
+
+  erkezesIdeje: string = new Date().toLocaleString();
 
   constructor(private serialNumberMachineService: SerialNumberMachineService) {}
   ngOnInit() {
