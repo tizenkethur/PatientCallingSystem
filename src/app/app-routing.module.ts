@@ -15,6 +15,13 @@ const routes: Routes = [
         'src/app/features/serial-number-machine/serial-number-machine.module'
       ).then((m) => m.SerialNumberMachineModule),
   },
+  {
+    path: 'kozponti-kijelzo',
+    loadChildren: () =>
+      import('src/app/features/center-screen/center-screen.module').then(
+        (m) => m.CenterScreenModule
+      ),
+  },
 ];
 
 @NgModule({
