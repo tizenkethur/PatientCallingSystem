@@ -22,6 +22,13 @@ const routes: Routes = [
         (m) => m.CenterScreenModule
       ),
   },
+  {
+    path: 'behivo-felulet',
+    loadChildren: () =>
+      import(
+        'src/app/features/calling-controller/calling-controller.module'
+      ).then((m) => m.CallingControllerModule),
+  },
 ];
 
 @NgModule({
