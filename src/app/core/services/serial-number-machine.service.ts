@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExaminationListViewModel } from 'src/app/shared/models/ExaminationListViewModel';
-import { SerialNumberRequestViewModel } from 'src/app/shared/models/SerialNumberRequestViewModel';
-import { SerialNumberViewModel } from 'src/app/shared/models/SerialNumberViewModel';
 import { environment } from 'src/environments/environment.development';
+import { VizsgalatModell } from 'src/app/shared/models/VizsgalatModell';
+import { SorszamKeresModell } from 'src/app/shared/models/SorszamKeresModell';
+import { SorszamModell } from 'src/app/shared/models/SorszamModell';
 
 @Injectable({
   providedIn: 'root',
@@ -12,24 +12,19 @@ import { environment } from 'src/environments/environment.development';
 export class SerialNumberMachineService {
   constructor(private http: HttpClient) {}
 
-  getExaminationList(): Observable<ExaminationListViewModel> {
-    return this.http.get<ExaminationListViewModel>(
-      `${environment.apiUrl}/vizsgalat`
-    );
+  vizsgalatListaLekeres(): Observable<VizsgalatModell[]> {
+    return this.http.get<VizsgalatModell[]>(`${environment.apiUrl}/vizsgalat`);
   }
 
-  chooseExamination(
+  vizsgalatValasztas(
     vizsgalatKod: string,
     taj: string
-  ): Observable<SerialNumberViewModel> {
-    const data: SerialNumberRequestViewModel = {
+  ): Observable<SorszamModell> {
+    const data: SorszamKeresModell = {
       vizsgalatKod,
       taj,
     };
-    
-    return this.http.post<SerialNumberViewModel>(
-      `${environment.apiUrl}/sorszam`,
-      data
-    );
+
+    return this.http.post<SorszamModell>(`${environment.apiUrl}/sorszam`, data);
   }
 }

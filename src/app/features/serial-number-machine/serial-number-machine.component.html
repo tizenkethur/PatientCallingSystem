@@ -6,24 +6,22 @@
           matInput
           type="text"
           placeholder="TAJ number"
-          formControlName="tajNumber"
+          formControlName="taj"
         />
       </mat-form-field>
       <mat-error
-        *ngIf="
-          tajNumber?.hasError('minlength') || tajNumber?.hasError('maxlength')
-        "
+        *ngIf="taj?.hasError('minlength') || taj?.hasError('maxlength')"
         >A TAJ szám 9 számjegyből kell álljon.</mat-error
       >
 
-      <mat-error *ngIf="tajNumber?.hasError('pattern')"
+      <mat-error *ngIf="taj?.hasError('pattern')"
         >Kérem, csak számokat adjon meg!</mat-error
       >
       <mat-error
         *ngIf="
-          tajNumber?.value.length === 9 &&
-          !tajNumber?.hasError('pattern') &&
-          tajNumber?.hasError('isCdvInvalid')
+          taj?.value.length === 9 &&
+          !taj?.hasError('pattern') &&
+          taj?.hasError('isCdvInvalid')
         "
         >A megadott TAJ szám nem érvényes.</mat-error
       >
@@ -34,25 +32,25 @@
     <button
       mat-raised-button
       color="warn"
-      *ngFor="let examination of examinationList.examinations"
-      (click)="chooseExamination(examination.kod, tajNumber.value)"
+      *ngFor="let vizsgalat of vizsgalatLista"
+      (click)="vizsgalatValasztas(vizsgalat.kod, taj.value)"
     >
-      {{ examination.megnevezes }}
+      {{ vizsgalat.megnevezes }}
     </button>
   </div>
 
   <div id="card-holder">
     <mat-card>
-      <div *ngIf="serialNumberData">
+      <div *ngIf="sorszamAdat">
         <h3>Az Ön sorszáma:</h3>
-        <h1 id="number">{{ serialNumberData.sorszam }}</h1>
-        <h3>Vizsgálatkód: {{ serialNumberData.vizsgalatKod }}</h3>
-        <h3 *ngIf="tajNumber">{{ serialNumberData.taj }}</h3>
+        <h1 id="number">{{ sorszamAdat.sorszam }}</h1>
+        <h3>Vizsgálatkód: {{ sorszamAdat.vizsgalatKod }}</h3>
+        <h3 *ngIf="taj">{{ sorszamAdat.taj }}</h3>
         <!--TODO: set date to hungarian format  -->
         <h3>
-          {{ serialNumberData.erkezesIdeje | date : "medium" }}
+          {{ sorszamAdat.erkezesIdeje | date : "medium" }}
         </h3>
-        <h3>Várakozók száma: {{ serialNumberData.varakozok }}</h3>
+        <h3>Várakozók száma: {{ sorszamAdat.varakozok }}</h3>
       </div>
     </mat-card>
   </div>

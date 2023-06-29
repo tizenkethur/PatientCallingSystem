@@ -1,4 +1,4 @@
-export interface SerialNumberViewModel {
+export interface SorszamModell {
   sorszam: number;
   vizsgalatKod: string;
   taj: string;

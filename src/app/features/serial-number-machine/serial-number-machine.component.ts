@@ -6,9 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { SerialNumberMachineService } from 'src/app/core/services/serial-number-machine.service';
-import { ExaminationListViewModel } from 'src/app/shared/models/ExaminationListViewModel';
-import { SerialNumberViewModel } from 'src/app/shared/models/SerialNumberViewModel';
 import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
+import { VizsgalatModell } from 'src/app/shared/models/VizsgalatModell';
+import { SorszamModell } from 'src/app/shared/models/SorszamModell';
 
 @Component({
   selector: 'serial-number-machine',
@@ -17,7 +17,7 @@ import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
 })
 export class SerialNumberMachineComponent implements OnInit {
   form = new FormGroup({
-    tajNumber: new FormControl('', [
+    taj: new FormControl('', [
       Validators.minLength(9),
       Validators.maxLength(9),
       Validators.pattern('^[0-9]*$'),
@@ -25,36 +25,34 @@ export class SerialNumberMachineComponent implements OnInit {
     ]),
   });
 
-  examinationList: ExaminationListViewModel = {
-    examinations: [
-      {
-        kod: 'V00',
-        megnevezes: 'Általános vizsgálat',
-      },
-      {
-        kod: 'V01',
-        megnevezes: 'Vérnyomás mérés',
-      },
-      {
-        kod: 'V02',
-        megnevezes: 'Vérvétel',
-      },
-      {
-        kod: 'V03',
-        megnevezes: 'Háziorvosi vizsgálat',
-      },
-      {
-        kod: 'V04',
-        megnevezes: 'Üzemorvosi vizsgálat',
-      },
-      {
-        kod: 'V05',
-        megnevezes: 'Bőrgyógyászat',
-      },
-    ],
-  };
+  vizsgalatLista: VizsgalatModell[] = [
+    {
+      kod: 'V00',
+      megnevezes: 'Általános vizsgálat',
+    },
+    {
+      kod: 'V01',
+      megnevezes: 'Vérnyomás mérés',
+    },
+    {
+      kod: 'V02',
+      megnevezes: 'Vérvétel',
+    },
+    {
+      kod: 'V03',
+      megnevezes: 'Háziorvosi vizsgálat',
+    },
+    {
+      kod: 'V04',
+      megnevezes: 'Üzemorvosi vizsgálat',
+    },
+    {
+      kod: 'V05',
+      megnevezes: 'Bőrgyógyászat',
+    },
+  ];
 
-  serialNumberData: SerialNumberViewModel = {
+  sorszamAdat: SorszamModell = {
     sorszam: 106,
     vizsgalatKod: 'V02',
     taj: '',
@@ -66,19 +64,17 @@ export class SerialNumberMachineComponent implements OnInit {
 
   ngOnInit() {
     this.serialNumberMachineService
-      .getExaminationList()
+      .vizsgalatListaLekeres()
       .subscribe((examinationList) => console.log(examinationList));
   }
 
-  get tajNumber(): AbstractControl | null {
-    return this.form.get('tajNumber');
+  get taj(): AbstractControl | null {
+    return this.form.get('taj');
   }
 
-  chooseExamination(vizsgalatKod: string, taj: string) {
+  vizsgalatValasztas(vizsgalatKod: string, taj: string) {
     this.serialNumberMachineService
-      .chooseExamination(vizsgalatKod, taj)
-      .subscribe(
-        (serialNumberData) => (this.serialNumberData = serialNumberData)
-      );
+      .vizsgalatValasztas(vizsgalatKod, taj)
+      .subscribe((sorszamAdat) => (this.sorszamAdat = sorszamAdat));
   }
 }
