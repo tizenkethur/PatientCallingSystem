@@ -1,0 +1,16 @@
+// TODO: add style to table
+
+table {
+  .mat-column-sorszam,
+  .mat-column-erkezesIdeje,
+  .mat-column-taj {
+    color: rgb(119, 115, 115);
+    font-weight: bold;
+  }
+}
+
+.mat-mdc-raised-button.mat-accent {
+  margin: 50px;
+  color: rgb(245, 245, 245);
+  font-size: 16px;
+}
