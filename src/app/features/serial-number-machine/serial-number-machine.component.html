@@ -41,8 +41,8 @@
 
   <div id="card-holder">
     <mat-card>
+      <h3>Az Ön sorszáma:</h3>
       <div *ngIf="sorszamAdat">
-        <h3>Az Ön sorszáma:</h3>
         <h1 id="number">{{ sorszamAdat.sorszam }}</h1>
         <h3>Vizsgálatkód: {{ sorszamAdat.vizsgalatKod }}</h3>
         <h3 *ngIf="taj">{{ sorszamAdat.taj }}</h3>

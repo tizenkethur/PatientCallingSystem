@@ -25,47 +25,16 @@ export class SerialNumberMachineComponent implements OnInit {
     ]),
   });
 
-  vizsgalatLista: VizsgalatModell[] = [
-    {
-      kod: 'V00',
-      megnevezes: 'Általános vizsgálat',
-    },
-    {
-      kod: 'V01',
-      megnevezes: 'Vérnyomás mérés',
-    },
-    {
-      kod: 'V02',
-      megnevezes: 'Vérvétel',
-    },
-    {
-      kod: 'V03',
-      megnevezes: 'Háziorvosi vizsgálat',
-    },
-    {
-      kod: 'V04',
-      megnevezes: 'Üzemorvosi vizsgálat',
-    },
-    {
-      kod: 'V05',
-      megnevezes: 'Bőrgyógyászat',
-    },
-  ];
+  vizsgalatLista: VizsgalatModell[];
 
-  sorszamAdat: SorszamModell = {
-    sorszam: 106,
-    vizsgalatKod: 'V02',
-    taj: '',
-    erkezesIdeje: '2023-06-28T21:23:34.055895242',
-    varakozok: 2,
-  };
+  sorszamAdat: SorszamModell;
 
   constructor(private serialNumberMachineService: SerialNumberMachineService) {}
 
   ngOnInit() {
     this.serialNumberMachineService
       .vizsgalatListaLekeres()
-      .subscribe((examinationList) => console.log(examinationList));
+      .subscribe((vizsgalatLista) => (this.vizsgalatLista = vizsgalatLista));
   }
 
   get taj(): AbstractControl | null {
