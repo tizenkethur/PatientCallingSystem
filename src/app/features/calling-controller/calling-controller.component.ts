@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription, timer, switchMap } from 'rxjs';
 import { BehivoService } from 'src/app/core/services/behivo.service';
 import { SorszamModell } from 'src/app/shared/models/SorszamModell';
 import { SzobaInfoModell } from 'src/app/shared/models/SzobaInfoModell';
@@ -11,10 +12,11 @@ import { SzobaInfoModell } from 'src/app/shared/models/SzobaInfoModell';
 export class CallingControllerComponent implements OnInit {
   // TODO: instead erkezesIdeje varakozasIdeje??
   varakozoLista: SorszamModell[];
-
   displayedColumns: string[] = ['sorszam', 'erkezesIdeje', 'taj'];
 
   szobaLista: SzobaInfoModell[];
+
+  subscription: Subscription;
 
   constructor(private behivoService: BehivoService) {}
 
@@ -24,9 +26,16 @@ export class CallingControllerComponent implements OnInit {
       .subscribe((szobaLista) => (this.szobaLista = szobaLista));
   }
 
+  // TODO: add a new component, wrap this to ngOnInit
   varakozoListaLekeres(szobaSzam: number) {
-    this.behivoService
-      .varakozoListaLekeres(szobaSzam)
-      .subscribe((varakozoLista) => (this.varakozoLista = varakozoLista));
+    this.subscription = timer(0, 1000)
+      .pipe(switchMap(() => this.behivoService.varakozoListaLekeres(szobaSzam)))
+      .subscribe((varakozoLista) => {
+        this.varakozoLista = varakozoLista;
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

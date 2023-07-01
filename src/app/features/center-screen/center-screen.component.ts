@@ -1,6 +1,7 @@
 import { KozpontiKijelzoInfoModell } from './../../shared/models/KozpontiKijelzoInfoModell';
 import { KijelzoService } from './../../core/services/kijelzo.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-center-screen',
@@ -11,14 +12,19 @@ export class CenterScreenComponent implements OnInit {
   kozpontiKijelzoLista: KozpontiKijelzoInfoModell[];
   displayedColumns: string[] = ['sorszam', 'szoba'];
 
+  subscription: Subscription;
+
   constructor(private kijelzoService: KijelzoService) {}
 
   ngOnInit(): void {
-    this.kijelzoService
-      .kozpontiKijelzoListaLekeres()
-      .subscribe(
-        (kozpontiKijelzoLista) =>
-          (this.kozpontiKijelzoLista = kozpontiKijelzoLista)
-      );
+    this.subscription = timer(0, 3000)
+      .pipe(switchMap(() => this.kijelzoService.kozpontiKijelzoListaLekeres()))
+      .subscribe((kozpontiKijelzoLista) => {
+        this.kozpontiKijelzoLista = kozpontiKijelzoLista;
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
