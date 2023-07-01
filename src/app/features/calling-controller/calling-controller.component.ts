@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
-import { BehivoModell } from 'src/app/shared/models/BehivoModell';
+import { Component, OnInit } from '@angular/core';
+import { BehivoService } from 'src/app/core/services/behivo.service';
+import { SorszamModell } from 'src/app/shared/models/SorszamModell';
+import { SzobaInfoModell } from 'src/app/shared/models/SzobaInfoModell';
+import { VizsgalatModell } from 'src/app/shared/models/VizsgalatModell';
 
 @Component({
   selector: 'app-calling-controller',
   templateUrl: './calling-controller.component.html',
   styleUrls: ['./calling-controller.component.scss'],
 })
-export class CallingControllerComponent {
+export class CallingControllerComponent implements OnInit {
   // TODO: instead erkezesIdeje varakozasIdeje??
-  varakozok: BehivoModell[] = [
-    { sorszam: 105, erkezesIdeje: '2023. 06. 29. 09:30', taj: '' },
-    { sorszam: 110, erkezesIdeje: '2023. 06. 29. 09:50', taj: '' },
-    { sorszam: 111, erkezesIdeje: '2023. 06. 29. 09:52', taj: '137333367' },
-  ];
+  varakozok: SorszamModell[];
 
   displayedColumns: string[] = ['sorszam', 'erkezesIdeje', 'taj'];
+
+  vizsgalatLista: VizsgalatModell[];
+  szobaLista: SzobaInfoModell[];
+
+  constructor(private behivoService: BehivoService) {}
+
+  ngOnInit(): void {
+    this.behivoService
+      .szobaListaLekeres()
+      .subscribe((szobaLista) => (this.szobaLista = szobaLista));
+    // this.callingScreenService
+    //   .varakozoListaLekeres()
+    //   .subscribe((varakozoLista) => (this.varakozok = varakozoLista));
+  }
 }

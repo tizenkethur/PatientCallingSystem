@@ -8,6 +8,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('src/app/features/main/main.module').then((m) => m.MainModule),
   },
+
   {
     path: 'sorszamoszto-automata',
     loadChildren: () =>

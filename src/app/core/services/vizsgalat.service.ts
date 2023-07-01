@@ -9,7 +9,7 @@ import { SorszamModell } from 'src/app/shared/models/SorszamModell';
 @Injectable({
   providedIn: 'root',
 })
-export class SerialNumberMachineService {
+export class VizsgalatService {
   constructor(private http: HttpClient) {}
 
   vizsgalatListaLekeres(): Observable<VizsgalatModell[]> {

@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { SerialNumberMachineService } from 'src/app/core/services/serial-number-machine.service';
+import { VizsgalatService } from 'src/app/core/services/vizsgalat.service';
 import { cdvValidator } from 'src/app/shared/validators/CDV.validator';
 import { VizsgalatModell } from 'src/app/shared/models/VizsgalatModell';
 import { SorszamModell } from 'src/app/shared/models/SorszamModell';
@@ -29,10 +29,10 @@ export class SerialNumberMachineComponent implements OnInit {
 
   sorszamAdat: SorszamModell;
 
-  constructor(private serialNumberMachineService: SerialNumberMachineService) {}
+  constructor(private vizsgalatService: VizsgalatService) {}
 
   ngOnInit() {
-    this.serialNumberMachineService
+    this.vizsgalatService
       .vizsgalatListaLekeres()
       .subscribe((vizsgalatLista) => (this.vizsgalatLista = vizsgalatLista));
   }
@@ -42,7 +42,7 @@ export class SerialNumberMachineComponent implements OnInit {
   }
 
   vizsgalatValasztas(vizsgalatKod: string, taj: string) {
-    this.serialNumberMachineService
+    this.vizsgalatService
       .vizsgalatValasztas(vizsgalatKod, taj)
       .subscribe((sorszamAdat) => (this.sorszamAdat = sorszamAdat));
   }
