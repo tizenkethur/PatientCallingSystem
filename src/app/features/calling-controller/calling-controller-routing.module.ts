@@ -6,11 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: CallingControllerComponent,
-    children: [
-      { path: '1', component: CallingControllerComponent },
-      { path: '2', component: CallingControllerComponent },
-      { path: '3', component: CallingControllerComponent },
-    ],
   },
 ];
 

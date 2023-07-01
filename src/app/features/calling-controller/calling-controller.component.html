@@ -4,37 +4,41 @@
       mat-raised-button
       color="warn"
       *ngFor="let szoba of szobaLista"
-      routerLink="/behivo-felulet/{{ szoba.szam }}"
+      (click)="varakozoListaLekeres(szoba.szam)"
     >
-      Behívás a {{ szoba.megnevezes }} szobába
+      Várakozók listája a(z) {{ szoba.megnevezes }} szobába
     </button>
   </div>
-  <!-- <table
-    mat-table
-    [dataSource]="varakozok"
-    class="mat-elevation-z8"
-    id="varakozok-tablazat"
-  >
-    <ng-container matColumnDef="sorszam">
-      <th mat-header-cell *matHeaderCellDef>Sorszám</th>
-      <td mat-cell *matCellDef="let varakozo">{{ varakozo.sorszam }}</td>
-    </ng-container>
 
-    <ng-container matColumnDef="erkezesIdeje">
-      <th mat-header-cell *matHeaderCellDef>Érkezés ideje</th>
-      <td mat-cell *matCellDef="let varakozo">
-        {{ varakozo.erkezesIdeje | date : "medium" }}
-      </td>
-    </ng-container>
+  <div id="table-holder" *ngIf="varakozoLista">
+    <h1>Behívó felület</h1>
+    <table
+      mat-table
+      [dataSource]="varakozoLista"
+      class="mat-elevation-z8"
+      id="varakozok-tablazat"
+    >
+      <ng-container matColumnDef="sorszam">
+        <th mat-header-cell *matHeaderCellDef>Sorszám</th>
+        <td mat-cell *matCellDef="let varakozo">{{ varakozo.sorszam }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="taj">
-      <th mat-header-cell *matHeaderCellDef>TAJ</th>
-      <td mat-cell *matCellDef="let varakozo">{{ varakozo.taj }}</td>
-    </ng-container>
+      <ng-container matColumnDef="erkezesIdeje">
+        <th mat-header-cell *matHeaderCellDef>Érkezés ideje</th>
+        <td mat-cell *matCellDef="let varakozo">
+          {{ varakozo.erkezesIdeje | date : "medium" }}
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table> -->
+      <ng-container matColumnDef="taj">
+        <th mat-header-cell *matHeaderCellDef>TAJ</th>
+        <td mat-cell *matCellDef="let varakozo">{{ varakozo.taj }}</td>
+      </ng-container>
 
-  <button mat-raised-button color="accent">Kérem a következőt!</button>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <button mat-raised-button color="accent">Kérem a következőt!</button>
+  </div>
 </div>

@@ -11,13 +11,13 @@ import { environment } from 'src/environments/environment.development';
 export class BehivoService {
   constructor(private http: HttpClient) {}
 
-  // TODO: pass the param
-  varakozoListaLekeres(): Observable<SorszamModell[]> {
-    // const szoba = new HttpParams().get()
-    return this.http.get<SorszamModell[]>(`${environment.apiUrl}/sorszam`);
-  }
-
   szobaListaLekeres(): Observable<SzobaInfoModell[]> {
     return this.http.get<SzobaInfoModell[]>(`${environment.apiUrl}/szobak`);
+  }
+
+  varakozoListaLekeres(szobaszam: number): Observable<SorszamModell[]> {
+    return this.http.get<SorszamModell[]>(
+      `${environment.apiUrl}/sorszam/${szobaszam}`
+    );
   }
 }
