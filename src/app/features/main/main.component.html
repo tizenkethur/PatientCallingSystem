@@ -4,19 +4,25 @@
     <h3>Az alábbiakban kipróbálhatja beteghívó rendszerünk funkcióit.</h3>
   </div>
   <div id="button-holder">
-    <button
-      mat-raised-button
-      color="primary"
-      routerLink="/sorszamoszto-automata"
-    >
-      Sorszámosztó automata
-    </button>
-    <button mat-raised-button color="primary" routerLink="/kozponti-kijelzo">
-      Központi kijelző
-    </button>
-    <button mat-raised-button color="primary">Helyi kijelző</button>
-    <button mat-raised-button color="primary" routerLink="/behivo-felulet">
-      Behívó felület
-    </button>
+    <div id="for-patients">
+      <h1>Betegek</h1>
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/sorszamoszto-automata"
+      >
+        Sorszámosztó automata
+      </button>
+      <button mat-raised-button color="primary" routerLink="/kozponti-kijelzo">
+        Központi kijelző
+      </button>
+      <button mat-raised-button color="primary">Helyi kijelző</button>
+    </div>
+    <div id="for-assistents">
+      <h1>Asszisztensek</h1>
+      <button mat-raised-button color="primary" routerLink="/behivo-felulet">
+        Behívó felület
+      </button>
+    </div>
   </div>
 </div>
