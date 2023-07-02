@@ -1,5 +1,5 @@
 <div id="content">
-  <div id="taj">
+  <div id="container">
     <form [formGroup]="form">
       <mat-form-field appearance="outline" color="warn">
         <input
@@ -26,8 +26,24 @@
         >A megadott TAJ szám nem érvényes.</mat-error
       >
     </form>
+
+    <div id="card-holder">
+      <mat-card>
+        <h3>Az Ön sorszáma:</h3>
+        <div *ngIf="sorszamAdat">
+          <h1 id="number">{{ sorszamAdat.sorszam }}</h1>
+          <h3>Vizsgálatkód: {{ sorszamAdat.vizsgalatKod }}</h3>
+          <h3 *ngIf="taj">{{ sorszamAdat.taj }}</h3>
+          <!--TODO: set date to hungarian format  -->
+          <h3>
+            {{ sorszamAdat.erkezesIdeje | date : "medium" }}
+          </h3>
+          <h3>Várakozók száma: {{ sorszamAdat.varakozok }}</h3>
+        </div>
+      </mat-card>
+    </div>
   </div>
-  <div id="list">
+  <div id="examination-list">
     <!-- TODO: making buttons disabled if taj is not valid -->
     <button
       mat-raised-button
@@ -37,21 +53,5 @@
     >
       {{ vizsgalat.megnevezes }}
     </button>
-  </div>
-
-  <div id="card-holder">
-    <mat-card>
-      <h3>Az Ön sorszáma:</h3>
-      <div *ngIf="sorszamAdat">
-        <h1 id="number">{{ sorszamAdat.sorszam }}</h1>
-        <h3>Vizsgálatkód: {{ sorszamAdat.vizsgalatKod }}</h3>
-        <h3 *ngIf="taj">{{ sorszamAdat.taj }}</h3>
-        <!--TODO: set date to hungarian format  -->
-        <h3>
-          {{ sorszamAdat.erkezesIdeje | date : "medium" }}
-        </h3>
-        <h3>Várakozók száma: {{ sorszamAdat.varakozok }}</h3>
-      </div>
-    </mat-card>
   </div>
 </div>
