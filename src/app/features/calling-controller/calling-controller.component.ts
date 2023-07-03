@@ -16,6 +16,8 @@ export class CallingControllerComponent implements OnInit {
 
   szobaLista: SzobaInfoModell[];
 
+  szobaSzam: number;
+
   subscription: Subscription;
 
   constructor(private behivoService: BehivoService) {}
@@ -26,13 +28,19 @@ export class CallingControllerComponent implements OnInit {
       .subscribe((szobaLista) => (this.szobaLista = szobaLista));
   }
 
-  // TODO: add a new component, wrap this to ngOnInit
   varakozoListaLekeres(szobaSzam: number) {
+    this.szobaSzam = szobaSzam;
+    // TODO: check whether it works properly or not
+    this.subscription.unsubscribe();
     this.subscription = timer(0, 1000)
       .pipe(switchMap(() => this.behivoService.varakozoListaLekeres(szobaSzam)))
       .subscribe((varakozoLista) => {
         this.varakozoLista = varakozoLista;
       });
+  }
+
+  kovetkezoVarakozoBehivas(szobaSzam: number, sorszam: number) {
+    this.behivoService.kovetkezoVarakozoBehivas(szobaSzam, sorszam).subscribe();
   }
 
   ngOnDestroy() {

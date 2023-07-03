@@ -38,7 +38,14 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-
-    <button mat-raised-button color="accent">Kérem a következőt!</button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="
+        kovetkezoVarakozoBehivas(this.szobaSzam, this.varakozoLista[0].sorszam)
+      "
+    >
+      Kérem a következőt!
+    </button>
   </div>
 </div>

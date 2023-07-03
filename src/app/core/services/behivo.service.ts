@@ -20,4 +20,15 @@ export class BehivoService {
       `${environment.apiUrl}/sorszam/${szobaszam}`
     );
   }
+
+  kovetkezoVarakozoBehivas(
+    szobaSzam: number,
+    sorszam: number
+  ): Observable<void> {
+    console.log(szobaSzam, sorszam);
+    return this.http.post<void>(
+      `${environment.apiUrl}/behivas/${szobaSzam}`,
+      sorszam
+    );
+  }
 }

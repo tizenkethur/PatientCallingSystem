@@ -14,9 +14,11 @@
   }
 
   #table-holder {
-    margin-top: 50px;
-    
+    margin-top: 30px;
+
     table {
+      width: 500px;
+
       .mat-column-sorszam,
       .mat-column-erkezesIdeje,
       .mat-column-taj {
@@ -26,7 +28,7 @@
     }
 
     .mat-mdc-raised-button.mat-accent {
-      margin: 50px;
+      margin-top: 30px;
       font-size: 16px;
     }
   }
