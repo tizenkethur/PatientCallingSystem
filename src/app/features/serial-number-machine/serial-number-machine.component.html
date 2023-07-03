@@ -49,6 +49,12 @@
       mat-raised-button
       color="warn"
       *ngFor="let vizsgalat of vizsgalatLista"
+      [disabled]="
+        (taj.value.length > 0 && taj?.hasError('isCdvInvalid')) ||
+        taj?.hasError('minlength') ||
+        taj?.hasError('maxlength') ||
+        taj?.hasError('pattern')
+      "
       (click)="vizsgalatValasztas(vizsgalat.kod, taj.value)"
     >
       {{ vizsgalat.megnevezes }}

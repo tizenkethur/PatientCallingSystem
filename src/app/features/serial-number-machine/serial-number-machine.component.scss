@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin: 10px;
 
     mat-form-field,
     mat-error,
@@ -22,6 +23,7 @@
 
     mat-error {
       color: red;
+      margin-top: -20px;
     }
 
     #card-holder {
