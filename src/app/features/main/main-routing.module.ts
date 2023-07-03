@@ -22,6 +22,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'helyi-kijelzo',
+        loadChildren: () =>
+          import('src/app/features/room-screen/room-screen.module').then(
+            (m) => m.RoomScreenModule
+          ),
+      },
+      {
         path: 'behivo-felulet',
         loadChildren: () =>
           import(
