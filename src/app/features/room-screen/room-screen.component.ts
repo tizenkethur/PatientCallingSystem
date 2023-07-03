@@ -25,7 +25,7 @@ export class RoomScreenComponent implements OnInit {
   }
 
   behivottLekeres(szobaszam: number) {
-    console.log('hali');
+    this.subscription?.unsubscribe();
     this.subscription = timer(0, 3000)
       .pipe(switchMap(() => this.szobaService.behivottLekeres(szobaszam)))
       .subscribe((behivott) => (this.behivott = behivott));

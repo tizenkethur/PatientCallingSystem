@@ -3,14 +3,15 @@
   <div id="card-holder">
     <mat-card *ngFor="let szoba of szobaLista">
       <button
+        *ngIf="szobaLista"
         mat-raised-button
         color="warn"
         (click)="behivottLekeres(szoba.szam)"
       >
         {{ szoba.megnevezes }}
       </button>
-      <h1 *ngIf="behivott.szoba === szoba.szam">
-        Sorszám: {{ behivott.sorszam }}
+      <h1 *ngIf="behivott && behivott.szoba === szoba.szam">
+        {{ behivott.sorszam }}
       </h1>
     </mat-card>
   </div>
