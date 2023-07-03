@@ -16,7 +16,6 @@ export class SzobaService {
   }
 
   behivottLekeres(szobaszam: number): Observable<BehivottModell> {
-    console.log('hali');
     return this.http.get<BehivottModell>(
       `${environment.apiUrl}/behivas/${szobaszam}`
     );

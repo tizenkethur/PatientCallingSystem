@@ -35,9 +35,8 @@ export class CallingControllerComponent implements OnInit {
 
   varakozoListaLekeres(szobaSzam: number) {
     this.szobaSzam = szobaSzam;
-    // TODO: check whether it works properly or not
-    // this.subscription.unsubscribe();
-    this.subscription = timer(0, 1000)
+    this.subscription?.unsubscribe();
+    this.subscription = timer(0, 10000)
       .pipe(switchMap(() => this.behivoService.varakozoListaLekeres(szobaSzam)))
       .subscribe((varakozoLista) => {
         this.varakozoLista = varakozoLista;
@@ -47,8 +46,4 @@ export class CallingControllerComponent implements OnInit {
   kovetkezoVarakozoBehivas(szobaSzam: number, sorszam: number) {
     this.behivoService.kovetkezoVarakozoBehivas(szobaSzam, sorszam).subscribe();
   }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
 }
