@@ -11,10 +11,6 @@ import { environment } from 'src/environments/environment.development';
 export class BehivoService {
   constructor(private http: HttpClient) {}
 
-  szobaListaLekeres(): Observable<SzobaInfoModell[]> {
-    return this.http.get<SzobaInfoModell[]>(`${environment.apiUrl}/szobak`);
-  }
-
   varakozoListaLekeres(szobaszam: number): Observable<SorszamModell[]> {
     return this.http.get<SorszamModell[]>(
       `${environment.apiUrl}/sorszam/${szobaszam}`

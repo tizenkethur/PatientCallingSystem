@@ -1,4 +1,4 @@
-import { KozpontiKijelzoInfoModell } from './../../shared/models/KozpontiKijelzoInfoModell';
+import { BehivottModell } from '../../shared/models/BehivottModell';
 import { KijelzoService } from './../../core/services/kijelzo.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription, switchMap, timer } from 'rxjs';
@@ -9,7 +9,7 @@ import { Subscription, switchMap, timer } from 'rxjs';
   styleUrls: ['./center-screen.component.scss'],
 })
 export class CenterScreenComponent implements OnInit {
-  kozpontiKijelzoLista: KozpontiKijelzoInfoModell[];
+  kozpontiKijelzoLista: BehivottModell[];
   displayedColumns: string[] = ['sorszam', 'szoba'];
 
   subscription: Subscription;

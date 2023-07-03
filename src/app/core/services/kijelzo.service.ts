@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { KozpontiKijelzoInfoModell } from 'src/app/shared/models/KozpontiKijelzoInfoModell';
+import { BehivottModell } from 'src/app/shared/models/BehivottModell';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment.development';
 export class KijelzoService {
   constructor(private http: HttpClient) {}
 
-  kozpontiKijelzoListaLekeres(): Observable<KozpontiKijelzoInfoModell[]> {
-    return this.http.get<KozpontiKijelzoInfoModell[]>(
+  kozpontiKijelzoListaLekeres(): Observable<BehivottModell[]> {
+    return this.http.get<BehivottModell[]>(
       `${environment.apiUrl}/behivas`
     );
   }

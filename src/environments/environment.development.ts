@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://6af4b463-b523-4b5a-810f-3cd46b3d54ba.mock.pstmn.io',
+  apiUrl: 'https://08a26200-15b4-4272-a06a-15e73f40c214.mock.pstmn.io',
   // apiUrl: 'https://felveteli.tigra.hu/feladat/frontend1/api',
 };

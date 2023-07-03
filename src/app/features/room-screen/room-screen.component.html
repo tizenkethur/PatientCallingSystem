@@ -1,1 +1,17 @@
-<p>room-screen works!</p>
+<div id="content" class="bordered">
+  <h3>Az utolsó sorszám megtekintéséhez válasszon szobát:</h3>
+  <div id="card-holder">
+    <mat-card *ngFor="let szoba of szobaLista">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="behivottLekeres(szoba.szam)"
+      >
+        {{ szoba.megnevezes }}
+      </button>
+      <h1 *ngIf="behivott.szoba === szoba.szam">
+        Sorszám: {{ behivott.sorszam }}
+      </h1>
+    </mat-card>
+  </div>
+</div>
